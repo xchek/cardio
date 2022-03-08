@@ -27,6 +27,9 @@ class Deck:
       return self.cards.pop(0)
     else:
       raise StopIteration
+  
+  def __repr__(self):
+    return f"<Deck size={len(self.cards)}>"
 
   def shuffle(self, n_times=1):
     [random.shuffle(self.cards) for x in range(n_times)]
