@@ -3,9 +3,9 @@ import random
 
 
 class Deck:
-  def __init__(self, ordered_deck=False, n_decks=1, baccarat=False):
+  def __init__(self, ordered_deck=False, n_decks=1, baccarat=False, blackjack=False):
     self.cards = [
-      Card(suit, card_value, baccarat)
+      Card(suit, card_value, baccarat, blackjack)
       for deckn in range(n_decks)       # baccarat & other games use multiple decks
       for suit in suits
       for card_value in range(1, 14)

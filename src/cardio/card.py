@@ -29,7 +29,7 @@ class Card(object):
   and the value the game assigns to the card.
   """
 
-  def __init__(self, suit=None, value=None, baccarat=False):
+  def __init__(self, suit=None, value=None, baccarat=False, blackjack=False):
     _suit = suits.get(suit.lower()) or suit_names.get(suit.upper())
     suit_name = suit_names.get(_suit, _suit)
     assert suit_name, f"Suit must be one of: Spade, Heart, Diamond, Club :: Provided Value: {suit}"
@@ -39,7 +39,12 @@ class Card(object):
 
     assert 1 <= value <= 13, "Cards value must be an int 1-13"
     self.value = value
-    self.game_value = value if not baccarat else baccarat_map.get(value, value)
+    if baccarat:
+      self.game_value = baccarat_map.get(value, value)
+    elif blackjack:
+      self.game_value = blackjack_map.get(value, value)
+    else:
+      self.game_value = value
     face_value = high_card_values.get(value, value)
     self.face_value_short = high_cards.get(face_value, face_value)
 
